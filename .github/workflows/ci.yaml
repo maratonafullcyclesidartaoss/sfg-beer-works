@@ -1,4 +1,4 @@
-name: ci-driver
+name: ci-brewery
 on:
   pull_request:
     branches:
