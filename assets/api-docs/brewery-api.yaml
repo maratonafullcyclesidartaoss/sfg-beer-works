@@ -1,0 +1,368 @@
+openapi: 3.0.3
+info:
+  version: 1.0-oas3.1
+  title: KBE REST Brewery
+  description: Specification for KBE REST Brewery
+  termsOfService: http://example.com/terms
+  contact:
+    name: Sidarta Silva
+    url: https://github.com/maratonafullcyclesidartaoss
+    email: semprebono@gmail.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: https://dev.example.com/v1
+    description: Development server
+  - url: https://qa.example.com
+    description: QA server
+  - url: https://prod.example.com/v1
+    description: Production server
+tags:
+  - name: Beers
+    description: Beer API
+  - name: Customers
+    description: Customer API
+paths:
+  /api/v1/customer:
+    post:
+      summary: Create customer.
+      description: Create a new customer.
+      operationId: "CreateCustomer"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+      responses:
+        '201':
+          description: Customer Created.
+          headers:
+            Location:
+              description: Location of the created customer.
+              schema:
+                type: string
+                format: uri
+                example: http://example.com/api/v1/customer/{assignedIdValue}
+        '500':
+          description: Internal Server Error
+      tags:
+        - "Customers"
+  /api/v1/customer/{customerId}:
+    get:
+      summary: Get customer.
+      description: Get a single customer by its _ID_ value.
+      operationId: "GetCustomer"
+      parameters:
+        - $ref: "#/components/parameters/CustomerID"
+      responses:
+        '200':
+          description: Found Customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        '404':
+          description: Customer Not Found.
+        '500':
+          description: Internal Server Error.
+      tags:
+        - "Customers"
+    put:
+      summary: Update customer.
+      description: Update a customer by its _ID_ value.
+      operationId: "UpdateCustomer"
+      parameters:
+        - $ref: "#/components/parameters/CustomerID"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+      responses:
+        "204":
+          description: Customer Updated.
+        "404":
+          description: Customer Not Found.
+        "500":
+          description: Internal Server Error.
+      tags:
+        - "Customers"
+    delete:
+      summary: Delete customer.
+      description: Delete a customer by its _ID_ value.
+      operationId: "DeleteCustomer"
+      parameters:
+        - $ref: "#/components/parameters/CustomerID"
+      responses:
+        '204':
+          description: Customer Deleted.
+        '404':
+          description: Customer Not Found.
+        '500':
+          description: Internal Server Error.
+      tags:
+        - "Customers"
+  /api/v1/beer:
+    get:
+      summary: List beers.
+      description: Get a list of all beers.
+      operationId: "ListBeers"
+      parameters:
+        - $ref: "#/components/parameters/PageNumberParam"
+        - $ref: "#/components/parameters/PageSizeParam"
+      responses:
+        '200':
+          description: List of Beers.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BeerPagedList"
+        '500':
+          description: Internal Server Error.
+      tags:
+        - "Beers"
+    post:
+      summary: Create beer.
+      description: Create a new beer.
+      operationId: "CreateBeer"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Beer"
+      responses:
+        '201':
+          description: Beer Created.
+          headers:
+            Location:
+              description: Location of the created beer.
+              schema:
+                type: string
+                format: uri
+                example: http://example.com/api/v1/beer/{assignedIdValue}
+        '500':
+          description: Internal Server Error.
+      tags:
+        - "Beers"
+  /api/v1/beer/{beerId}:
+    get:
+      summary: Get beer.
+      description: Get a single beer by its _ID_ value.
+      operationId: "GetBeer"
+      parameters:
+        - $ref: "#/components/parameters/BeerID"
+      responses:
+        '200':
+          description: Get a Beer.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Beer"
+        '404':
+          description: Beer Not Found.
+        '500':
+          description: Internal Server Error.
+      tags:
+        - "Beers"
+    put:
+      summary: Update beer.
+      description: Update a beer by its _ID_ value.
+      operationId: "UpdateBeer"
+      parameters:
+        - $ref: "#/components/parameters/BeerID"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Beer"
+      responses:
+        '204':
+          description: Beer Updated.
+        '404':
+          description: Beer Not Found.
+        '500':
+          description: Internal Server Error.
+      tags:
+        - "Beers"
+    delete:
+      summary: Delete beer.
+      description: Delete a beer by its _ID_ value.
+      operationId: "DeleteBeer"
+      parameters:
+        - $ref: "#/components/parameters/BeerID"
+      responses:
+        '204':
+          description: Beer Deleted.
+        '404':
+          description: Beer Not Found.
+        '500':
+          description: Internal Server Error.
+      tags:
+        - "Beers"
+components:
+  parameters:
+    PageNumberParam:
+      name: pageNumber
+      in: query
+      description: Page Number
+      schema:
+        type: integer
+        format: int32
+        default: 1
+    PageSizeParam:
+      name: pageSize
+      in: query
+      description: Page Size
+      required: false
+      schema:
+        type: integer
+        format: int32
+        default: 10
+    CustomerID:
+      name: customerId
+      in: path
+      description: Customer ID
+      required: true
+      schema:
+        type: string
+        format: uuid
+    BeerID:
+      name: beerId
+      in: path
+      description: Beer ID
+      required: true
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    Customer:
+      type: object
+      title: Customer
+      description: Customer Data Transfer Object.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          minLength: 3
+          maxLength: 100
+          required: true
+          example: Best Wines
+    Beer:
+      type: object
+      title: Beer
+      description: Beer Data Transfer Object.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        beerName:
+          type: string
+          minLength: 2
+          maxLength: 100
+          example: Bud Light
+        beerStyle:
+          type: string
+          minLength: 3
+          maxLength: 10
+          description: Beer styles in US
+          enum:
+            - LAGER
+            - PILSNER
+            - STOUT
+            - GOSE
+            - PORTER
+            - ALE
+            - WHEAT
+            - IPA
+            - PALE_ALE
+            - SAISON
+        upc:
+          type: string
+          example: 042100005264
+        price:
+          type: number
+          example: 26.99
+        quantityOnHand:
+          type: integer
+          example: 1
+        createdDate:
+          type: string
+          example: 2023-06-15T23:59:59.999Z
+        lastUpdatedDate:
+          type: string
+          example: 2023-06-15T23:59:59.999Z
+    BeerList:
+      type: array
+      minItems: 1
+      maxItems: 100
+      description: List of Beers.
+      items:
+        $ref: "#/components/schemas/Beer"
+    BeerPagedList:
+      type: object
+      allOf:
+        - $ref: "#/components/schemas/PagedResponse"
+      properties:
+        content:
+          $ref: "#/components/schemas/BeerList"
+    PagedResponse:
+      type: object
+      properties:
+        pageable:
+          type: object
+          properties:
+            sort:
+              type: object
+              properties:
+                sorted:
+                  type: boolean
+                unsorted:
+                  type: boolean
+            offset:
+              type: integer
+              format: int32
+            pageNumber:
+              type: integer
+              format: int32
+            pageSize:
+              type: integer
+              format: int32
+            paged:
+              type: boolean
+            unpaged:
+              type: boolean
+        totalPages:
+          type: integer
+          format: int32
+        last:
+          type: boolean
+        totalElements:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
+        sort:
+          type: object
+          properties:
+            sorted:
+              type: boolean
+            unsorted:
+              type: boolean
+        first:
+          type: boolean
