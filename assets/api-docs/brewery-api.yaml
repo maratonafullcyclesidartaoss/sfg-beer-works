@@ -28,7 +28,7 @@ paths:
     post:
       summary: Create customer.
       description: Create a new customer.
-      operationId: "CreateCustomer"
+      operationId: "createCustomer"
       requestBody:
         required: true
         content:
@@ -44,7 +44,7 @@ paths:
               schema:
                 type: string
                 format: uri
-                example: http://example.com/api/v1/customer/{assignedIdValue}
+                example: http://example.com/api/v1/customer/91bd8eb3-ca8d-4d4b-ab1b-25b268b6a797
         '400':
           description: Bad Request.
         '500':
@@ -55,7 +55,7 @@ paths:
     get:
       summary: Get customer.
       description: Get a single customer by its _ID_ value.
-      operationId: "GetCustomer"
+      operationId: "getCustomer"
       parameters:
         - $ref: "#/components/parameters/CustomerID"
       responses:
@@ -74,7 +74,7 @@ paths:
     put:
       summary: Update customer.
       description: Update a customer by its _ID_ value.
-      operationId: "UpdateCustomer"
+      operationId: "updateCustomer"
       parameters:
         - $ref: "#/components/parameters/CustomerID"
       requestBody:
@@ -97,7 +97,7 @@ paths:
     delete:
       summary: Delete customer.
       description: Delete a customer by its _ID_ value.
-      operationId: "DeleteCustomer"
+      operationId: "deleteCustomer"
       parameters:
         - $ref: "#/components/parameters/CustomerID"
       responses:
@@ -113,7 +113,7 @@ paths:
     get:
       summary: List beers.
       description: Get a list of all beers.
-      operationId: "ListBeers"
+      operationId: "listBeers"
       parameters:
         - $ref: "#/components/parameters/PageNumberParam"
         - $ref: "#/components/parameters/PageSizeParam"
@@ -131,7 +131,7 @@ paths:
     post:
       summary: Create beer.
       description: Create a new beer.
-      operationId: "CreateBeer"
+      operationId: "createBeer"
       requestBody:
         required: true
         content:
@@ -147,7 +147,7 @@ paths:
               schema:
                 type: string
                 format: uri
-                example: http://example.com/api/v1/beer/{assignedIdValue}
+                example: http://example.com/api/v1/beer/74c47c08-9bee-44d2-8248-0771d5e5cb42
         '400':
           description: Bad Request.
         '500':
@@ -158,7 +158,7 @@ paths:
     get:
       summary: Get beer.
       description: Get a single beer by its _ID_ value.
-      operationId: "GetBeer"
+      operationId: "getBeer"
       parameters:
         - $ref: "#/components/parameters/BeerID"
       responses:
@@ -177,7 +177,7 @@ paths:
     put:
       summary: Update beer.
       description: Update a beer by its _ID_ value.
-      operationId: "UpdateBeer"
+      operationId: "updateBeer"
       parameters:
         - $ref: "#/components/parameters/BeerID"
       requestBody:
@@ -200,7 +200,7 @@ paths:
     delete:
       summary: Delete beer.
       description: Delete a beer by its _ID_ value.
-      operationId: "DeleteBeer"
+      operationId: "deleteBeer"
       parameters:
         - $ref: "#/components/parameters/BeerID"
       responses:
@@ -269,7 +269,7 @@ components:
           minLength: 3
           maxLength: 100
           required: true
-          example: Best Wines
+          example: "Best Wines"
     Beer:
       type: object
       title: Beer
@@ -302,7 +302,7 @@ components:
             - SAISON
         upc:
           type: string
-          example: 042100005264
+          example: "042100005264"
         price:
           type: number
           example: 26.99
