@@ -268,8 +268,7 @@ components:
           type: string
           minLength: 3
           maxLength: 100
-          required: true
-          example: ["Best Wines"]
+          example: Best Wines
     Beer:
       type: object
       title: Beer
