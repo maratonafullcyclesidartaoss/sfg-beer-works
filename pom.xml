@@ -30,6 +30,7 @@
         <org.lombok.version>1.18.22</org.lombok.version>
         <sonar.organization>maratonafullcyclesidartaoss</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <springfox.version>2.9.2</springfox.version>
     </properties>
 
     <dependencies>
@@ -69,6 +70,11 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

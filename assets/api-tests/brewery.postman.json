@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "6416946f-f0c6-41ec-a7f1-94dd1d913cd8",
+		"name": "BREWERY API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3815935"
+	},
+	"item": [
+		{
+			"name": "Contract Tests",
+			"item": [
+				{
+					"name": "beer",
+					"item": [
+						{
+							"name": "List Beers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Validate status 2xx ",
+											"pm.test(\"[GET]::/api/v1/beer - Status code is 200 OK\", () => {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Validate if response header has matching content-type",
+											"pm.test(\"[GET]::/api/v1/beer - Content-Type is application/json\", function () {",
+											"   pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+											"});",
+											"",
+											"// Validate if response has JSON Body ",
+											"pm.test(\"[GET]::/api/v1/beer - Response has JSON Body\", function () {",
+											"    pm.response.to.have.jsonBody();",
+											"});",
+											"",
+											"// Response Validation",
+											"const schema = {\"type\":\"array\",\"content\": [{\"type\": \"object\", \"properties\": {\"id\": {\"type\": \"string\"}, \"beerName\": {\"type\": \"string\"}, \"beerStyle\": {\"type\": \"string\"}, \"upc\": {\"type\": \"string\"}, \"price\": {\"type\": \"double\"}, \"quantityOnHand\": {\"type\": \"int32\"}, \"createdDate\": {\"type\": \"string\"}, \"lastUpdatedDate\": {\"type\": \"string\"}}}]};",
+											"",
+											"// Validate if response matches JSON schema ",
+											"pm.test(\"[GET]::/api/v1/beer - Schema is valid\", function() {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{beer-Url}}/api/v1/beer",
+									"host": [
+										"{{beer-Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"beer"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "List Beers Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{beer-Url}}/api/v1/beer",
+											"host": [
+												"{{beer-Url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"beer"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{\n   \"content\":[\n      {\n         \"id\":\"6ad1e587-6bb3-4651-87aa-8b66235cb4fe\",\n         \"beerName\":\"Mango Bobs\",\n         \"beerStyle\":\"ALE\",\n         \"upc\":\"0631234200036\",\n         \"price\":55.22,\n         \"quantityOnHand\":2901,\n         \"createdDate\":\"2023-06-17T18:07:09.818Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"fb595a4f-0b7f-4630-9c7c-5f8a6b9aea99\",\n         \"beerName\":\"Galaxy Cat\",\n         \"beerStyle\":\"PALE_ALE\",\n         \"upc\":\"9122089364369\",\n         \"price\":11.42,\n         \"quantityOnHand\":4049,\n         \"createdDate\":\"2023-06-17T18:07:09.834Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"87891e20-0948-4a2f-9033-44861db9c394\",\n         \"beerName\":\"No Hammers On The Bar\",\n         \"beerStyle\":\"WHEAT\",\n         \"upc\":\"0083783375213\",\n         \"price\":88.78,\n         \"quantityOnHand\":3536,\n         \"createdDate\":\"2023-06-17T18:07:09.836Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"d7e204dd-c308-4970-bdbe-023b0ac23481\",\n         \"beerName\":\"Blessed\",\n         \"beerStyle\":\"STOUT\",\n         \"upc\":\"4666337557578\",\n         \"price\":90.66,\n         \"quantityOnHand\":3755,\n         \"createdDate\":\"2023-06-17T18:07:09.837Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"72a26e1e-90c9-41f1-95f7-992238db81cb\",\n         \"beerName\":\"Adjunct Trail\",\n         \"beerStyle\":\"STOUT\",\n         \"upc\":\"8380495518610\",\n         \"price\":73.86,\n         \"quantityOnHand\":2335,\n         \"createdDate\":\"2023-06-17T18:07:09.839Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"cd64042c-d99b-4a89-b34e-a4927d3bcf5e\",\n         \"beerName\":\"Very GGGreenn\",\n         \"beerStyle\":\"IPA\",\n         \"upc\":\"5677465691934\",\n         \"price\":6.78,\n         \"quantityOnHand\":3674,\n         \"createdDate\":\"2023-06-17T18:07:09.84Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"d20eb7c4-4e11-4313-8e13-f272676ce05f\",\n         \"beerName\":\"Double Barrel Hunahpu's\",\n         \"beerStyle\":\"STOUT\",\n         \"upc\":\"5463533082885\",\n         \"price\":44.05,\n         \"quantityOnHand\":982,\n         \"createdDate\":\"2023-06-17T18:07:09.842Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"938fcb28-fbfe-4381-87d2-c37901bc5795\",\n         \"beerName\":\"Very Hazy\",\n         \"beerStyle\":\"IPA\",\n         \"upc\":\"5339741428398\",\n         \"price\":62.26,\n         \"quantityOnHand\":1789,\n         \"createdDate\":\"2023-06-17T18:07:09.843Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"10ad597f-5ca5-4f97-9fbf-73a6f68e1f25\",\n         \"beerName\":\"SR-71\",\n         \"beerStyle\":\"STOUT\",\n         \"upc\":\"1726923962766\",\n         \"price\":39.26,\n         \"quantityOnHand\":3576,\n         \"createdDate\":\"2023-06-17T18:07:09.844Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"32ac02d3-2466-4e70-bee0-c038c373ad4d\",\n         \"beerName\":\"Pliny the Younger\",\n         \"beerStyle\":\"IPA\",\n         \"upc\":\"8484957731774\",\n         \"price\":39.65,\n         \"quantityOnHand\":2736,\n         \"createdDate\":\"2023-06-17T18:07:09.845Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"27eda1c6-659e-4025-a50f-53b88edd2c7d\",\n         \"beerName\":\"Blessed\",\n         \"beerStyle\":\"STOUT\",\n         \"upc\":\"6266328524787\",\n         \"price\":10.16,\n         \"quantityOnHand\":4364,\n         \"createdDate\":\"2023-06-17T18:07:09.847Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"24d0c7b2-d7cd-4a8f-aba3-156d744fb8e8\",\n         \"beerName\":\"King Krush\",\n         \"beerStyle\":\"IPA\",\n         \"upc\":\"7490217802727\",\n         \"price\":84.77,\n         \"quantityOnHand\":1586,\n         \"createdDate\":\"2023-06-17T18:07:09.848Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"a058c0c8-3eac-4b81-b9aa-6cf2ebcedf2e\",\n         \"beerName\":\"PBS Porter\",\n         \"beerStyle\":\"PORTER\",\n         \"upc\":\"8579613295827\",\n         \"price\":11.89,\n         \"quantityOnHand\":3639,\n         \"createdDate\":\"2023-06-17T18:07:09.849Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"a71c2ca6-5157-4c27-8860-b8f1906e182e\",\n         \"beerName\":\"Pinball Porter\",\n         \"beerStyle\":\"STOUT\",\n         \"upc\":\"2318301340601\",\n         \"price\":97.16,\n         \"quantityOnHand\":4826,\n         \"createdDate\":\"2023-06-17T18:07:09.851Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"79000861-55ae-4666-8a59-11ebfc2674ba\",\n         \"beerName\":\"Golden Budda\",\n         \"beerStyle\":\"STOUT\",\n         \"upc\":\"9401790633828\",\n         \"price\":31.97,\n         \"quantityOnHand\":2371,\n         \"createdDate\":\"2023-06-17T18:07:09.852Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"b58a1cd4-5831-4b83-be3e-20196bf02da3\",\n         \"beerName\":\"Grand Central Red\",\n         \"beerStyle\":\"LAGER\",\n         \"upc\":\"4813896316225\",\n         \"price\":61.13,\n         \"quantityOnHand\":618,\n         \"createdDate\":\"2023-06-17T18:07:09.854Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"70a57fc9-3238-411a-a255-fa899a7df50c\",\n         \"beerName\":\"Pac-Man\",\n         \"beerStyle\":\"STOUT\",\n         \"upc\":\"3431272499891\",\n         \"price\":51.23,\n         \"quantityOnHand\":2044,\n         \"createdDate\":\"2023-06-17T18:07:09.856Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"0ec555a4-af30-43d1-adf4-df5fca914bf2\",\n         \"beerName\":\"Ro Sham Bo\",\n         \"beerStyle\":\"IPA\",\n         \"upc\":\"2380867498485\",\n         \"price\":33.44,\n         \"quantityOnHand\":4494,\n         \"createdDate\":\"2023-06-17T18:07:09.857Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"102938bb-4d4b-488d-8898-7fd6ccceeab6\",\n         \"beerName\":\"Summer Wheatly\",\n         \"beerStyle\":\"WHEAT\",\n         \"upc\":\"4323950503848\",\n         \"price\":51.08,\n         \"quantityOnHand\":171,\n         \"createdDate\":\"2023-06-17T18:07:09.859Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"9781dbd3-caad-43b3-9961-1c8479dd3d61\",\n         \"beerName\":\"Java Jill\",\n         \"beerStyle\":\"LAGER\",\n         \"upc\":\"4006016803570\",\n         \"price\":74.56,\n         \"quantityOnHand\":1438,\n         \"createdDate\":\"2023-06-17T18:07:09.86Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"69e65d18-6b98-483d-badb-f899d67ff2d9\",\n         \"beerName\":\"Bike Trail Pale\",\n         \"beerStyle\":\"PALE_ALE\",\n         \"upc\":\"9883012356263\",\n         \"price\":10.13,\n         \"quantityOnHand\":2524,\n         \"createdDate\":\"2023-06-17T18:07:09.861Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"bb4b5dcb-1d52-40fd-bc3d-3abb0c31eb91\",\n         \"beerName\":\"N.Z.P\",\n         \"beerStyle\":\"IPA\",\n         \"upc\":\"0583668718888\",\n         \"price\":34.22,\n         \"quantityOnHand\":718,\n         \"createdDate\":\"2023-06-17T18:07:09.862Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"5521b7e2-f34e-4d2f-83b7-93b52f57d5cd\",\n         \"beerName\":\"Stawberry Blond\",\n         \"beerStyle\":\"WHEAT\",\n         \"upc\":\"9006801347604\",\n         \"price\":58.49,\n         \"quantityOnHand\":538,\n         \"createdDate\":\"2023-06-17T18:07:09.864Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"6218441f-9886-484d-b48b-b43c79b7f56e\",\n         \"beerName\":\"Loco\",\n         \"beerStyle\":\"PORTER\",\n         \"upc\":\"0610275742736\",\n         \"price\":72.99,\n         \"quantityOnHand\":4662,\n         \"createdDate\":\"2023-06-17T18:07:09.865Z\",\n         \"lastUpdatedDate\":null\n      },\n      {\n         \"id\":\"1e9d7b70-429c-4c5e-bb3c-2126626e748e\",\n         \"beerName\":\"Spocktoberfest\",\n         \"beerStyle\":\"STOUT\",\n         \"upc\":\"6504219363283\",\n         \"price\":73.24,\n         \"quantityOnHand\":1427,\n         \"createdDate\":\"2023-06-17T18:07:09.866Z\",\n         \"lastUpdatedDate\":null\n      }\n   ],\n   \"number\":0,\n   \"size\":25,\n   \"totalElements\":30,\n   \"pageable\":{\n      \"sort\":{\n         \"unsorted\":true,\n         \"sorted\":false,\n         \"empty\":true\n      },\n      \"offset\":0,\n      \"pageNumber\":0,\n      \"pageSize\":25,\n      \"paged\":true,\n      \"unpaged\":false\n   },\n   \"last\":false,\n   \"totalPages\":2,\n   \"sort\":{\n      \"unsorted\":true,\n      \"sorted\":false,\n      \"empty\":true\n   },\n   \"first\":true,\n   \"numberOfElements\":25,\n   \"empty\":false\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "beer-Url",
+			"value": "http://127.0.0.1:4010"
+		}
+	]
+}
