@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: brewery
+spec:
+  selector:
+    matchLabels:
+      app: brewery
+  template:
+    metadata:
+      labels:
+        app: brewery
+    spec:
+      containers:
+      - name: brewery
+        image: brewery
+        resources:
+          requests:
+            cpu: "0.005"
+            memory: 20Mi
+          limits:
+            cpu: "0.005"
+            memory: 25Mi
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: brewery
+  annotations:
+    # konghq.com/plugins: prometheus-brewery,brewery-logs
+    ingress.kubernetes.io/service-upstream: "true"
+  labels:
+    app: brewery
+    stack: echo
+    interface: rest
+    language: golang
+spec:
+  type: LoadBalancer
+  selector:
+    app: brewery
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8080
