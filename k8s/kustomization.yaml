@@ -2,9 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - brewery.yaml
+- brewery.yaml
 
 images:
-  - name: brewery
-    newName: sidartasilva/sfg-beer-works
-    newTag: e2a9f4b23d74591ab2777c19375bfd469139217f
+- name: brewery
+  newName: sidartasilva/sfg-beer-works
+  newTag: 2fbabcce3377649e5c8ef9c3af04ed996193baad
