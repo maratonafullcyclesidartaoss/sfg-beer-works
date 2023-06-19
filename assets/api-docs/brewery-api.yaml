@@ -117,6 +117,9 @@ paths:
       parameters:
         - $ref: "#/components/parameters/PageNumberParam"
         - $ref: "#/components/parameters/PageSizeParam"
+        - $ref: "#/components/parameters/BeerNameParam"
+        - $ref: '#/components/parameters/BeerStyleParam'
+        - $ref: "#/components/parameters/ShowInventoryOnHandParam"
       responses:
         '200':
           description: List of Beers.
@@ -161,6 +164,7 @@ paths:
       operationId: "getBeer"
       parameters:
         - $ref: "#/components/parameters/BeerID"
+        - $ref: '#/components/parameters/ShowInventoryOnHandParam'
       responses:
         '200':
           description: Get a Beer.
@@ -212,6 +216,26 @@ paths:
           description: Internal Server Error.
       tags:
         - "Beers"
+  /api/v1/beerUpc/{upc}:
+    get:
+      summary: Get beer by UPC.
+      description: Get a single beer by its _UPC_ value.
+      operationId: "getBeerByUpc"
+      parameters:
+        - $ref: '#/components/parameters/UPC'
+      responses:
+        '200':
+          description: Get a Beer by UPC.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Beer'
+        '404':
+          description: Beer Not Found.
+        '500':
+          description: Internal Server Error.
+      tags:
+        - "Beers"
 security:
   - JwtAuthToken: []
 components:
@@ -238,6 +262,25 @@ components:
         type: integer
         format: int32
         default: 10
+    BeerNameParam:
+      name: beerName
+      in: query
+      description: Beer Name
+      required: false
+    BeerStyleParam:
+      name: beerStyle
+      in: query
+      required: false
+      description: Beer Style
+      schema:
+        $ref: '#/components/schemas/BeerStyle'
+    ShowInventoryOnHandParam:
+      name: showInventoryOnHand
+      in: query
+      required: false
+      description: Show Inventory On Hand
+      schema:
+        type: boolean
     CustomerID:
       name: customerId
       in: path
@@ -254,6 +297,13 @@ components:
       schema:
         type: string
         format: uuid
+    UPC:
+      name: upc
+      in: path
+      description: UPC
+      required: true
+      schema:
+        type: string
   schemas:
     Customer:
       type: object
@@ -284,21 +334,8 @@ components:
           maxLength: 100
           example: Bud Light
         beerStyle:
-          type: string
-          minLength: 3
-          maxLength: 10
-          description: Beer styles in US
-          enum:
-            - LAGER
-            - PILSNER
-            - STOUT
-            - GOSE
-            - PORTER
-            - ALE
-            - WHEAT
-            - IPA
-            - PALE_ALE
-            - SAISON
+          allOf:
+            - $ref: "#/components/schemas/BeerStyle"
         upc:
           type: string
           example: "042100005264"
@@ -380,3 +417,19 @@ components:
               type: boolean
         first:
           type: boolean
+    BeerStyle:
+      type: string
+      minLength: 3
+      maxLength: 10
+      description: Beer styles in US
+      enum:
+        - LAGER
+        - PILSNER
+        - STOUT
+        - GOSE
+        - PORTER
+        - ALE
+        - WHEAT
+        - IPA
+        - PALE_ALE
+        - SAISON
