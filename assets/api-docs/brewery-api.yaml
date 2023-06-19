@@ -267,6 +267,8 @@ components:
       in: query
       description: Beer Name
       required: false
+      schema:
+        type: string
     BeerStyleParam:
       name: beerStyle
       in: query
