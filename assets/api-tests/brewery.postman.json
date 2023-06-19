@@ -974,7 +974,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"Molson Coors Brewing\"\n}",
+									"raw": "{\n    \"name\": \"Molson Coors Brewing\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
