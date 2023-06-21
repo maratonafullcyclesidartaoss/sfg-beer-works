@@ -7,4 +7,4 @@ resources:
 images:
 - name: brewery
   newName: sidartasilva/sfg-beer-works
-  newTag: 918a2c4810161d5be17bbb7ddaec20acb9aa546f
+  newTag: 5c82106955a1753252cd647308b7388e5f60d132
