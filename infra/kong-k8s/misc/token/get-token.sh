@@ -7,5 +7,5 @@ curl --location --request POST 'http://keycloak.iam/realms/brewery/protocol/open
 --data-urlencode 'grant_type=password' \
 --data-urlencode 'username=maria' \
 --data-urlencode 'password=maria' \
---data-urlencode 'client_secret=a8Jh6Z6dSxxufKlSB55u8yhdySkyWHZ5' \
+--data-urlencode 'client_secret=7u8TjX572XjKVW9BMgALr4t3BC1Ut1cC' \
 --data-urlencode 'scope=openid'
