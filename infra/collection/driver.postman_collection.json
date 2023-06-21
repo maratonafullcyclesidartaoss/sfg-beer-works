@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "cd5a5bba-d620-4098-b669-81cff292b569",
+		"name": "DRIVER FULL CYCLE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3815935"
+	},
+	"item": [
+		{
+			"name": "GET ALL DRIVERS",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0Y3ZRakRJcTVhZGRLRGpsT1B2U282MXZvSVE4ajRlVUpsU01fQmMxd3pZIn0.eyJleHAiOjE2ODY3MTA2NDYsImlhdCI6MTY4NjcwNzA0NiwianRpIjoiMTNhMmQ4ZTAtMjEzZS00ZDA5LWJiYWMtZTFkMzQ0MGEwN2JlIiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLmlhbS9yZWFsbXMvZHJpdmVyIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjVlYTViN2ZkLTkyNmItNDVlMi1iN2VmLThlYTIyZDNmNGRlMiIsInR5cCI6IkJlYXJlciIsImF6cCI6ImtvbmciLCJzZXNzaW9uX3N0YXRlIjoiMzY4M2Y2ODMtYmViMC00OGJjLWJlMWUtZjEzNTRhODAwNTcyIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtZHJpdmVyIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwic2lkIjoiMzY4M2Y2ODMtYmViMC00OGJjLWJlMWUtZjEzNTRhODAwNTcyIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJtYXJpYSIsImdpdmVuX25hbWUiOiIiLCJmYW1pbHlfbmFtZSI6IiJ9.XAzDBjF7V5ChIq5t37m2wu7IYYmvF1zqnAt8a8R_YlbtWeHYPE1xKkUPpz8GUg2J8gC7lsQtje9kXhCa7H4eqMUPdO68bi_mIDNRlpsRt5y-BFBOkNYnGpRgkn98J1ApEIIgiZ56hUuz01vpQ9OKXNzTxMTD-XyjOyt0SyrJhDvDLvJw2PoTf_KIDJomj9Y0-TnbD4wPRGuJsHk82tohTTCz7nQo1_JxatdpiN5Jby8Y8gVR5OkCzJGbP-sAub7S5oiajZYySWzQpxW3kkT1ETpfrRQXMHDIz8QTzyZCdp993I60xBPyyYB1c78_3VOpJ_rGgbfl8Ww2T28tPZyksg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{driver-url}}/drivers",
+					"host": [
+						"{{driver-url}}"
+					],
+					"path": [
+						"drivers"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "driver-url",
+			"value": "35.223.2.233/api/driver"
+		}
+	]
+}

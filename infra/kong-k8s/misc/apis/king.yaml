@@ -1,0 +1,13 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongIngress
+metadata:
+  name: do-not-preserve-host
+route:
+  preserve_host: false
+  strip_path: true
+upstream:
+  host_header: brewery.brewery.svc
+proxy:
+  connect_timeout: 2000
+  read_timeout: 2000
+  write_timeout: 2000
