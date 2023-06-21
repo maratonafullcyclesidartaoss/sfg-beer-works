@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: brewery
+spec:
+  selector:
+    matchLabels:
+      app: brewery
+  template:
+    metadata:
+      labels:
+        app: brewery
+    spec:
+      containers:
+        - name: brewery
+          image: sidartasilva/sfg-beer-works:latest
+          resources:
+            requests:
+              cpu: "0.3"
+              memory: 512Mi
+            limits:
+              cpu: "0.4"
+              memory: 1Gi
+          env:
+            - name: LOGGING_LEVEL_GURU_SPRINGFRAMEWORK_SFGRESTBREWERY
+              value: info
+          ports:
+            - containerPort: 8080

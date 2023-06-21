@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: brewery-api
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+    konghq.com/override: do-not-preserve-host
+    konghq.com/plugins: oidc-brewery,rl-by-header,prometheus-brewery
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /beer-service
+            pathType: Prefix
+            backend:
+              service:
+                name: brewery
+                port:
+                  number: 80
