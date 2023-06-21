@@ -16,7 +16,7 @@ spec:
           image: brewery
           resources:
             requests:
-              cpu: "0.05"
+              cpu: "0.01"
               memory: 512Mi
             limits:
               cpu: "0.05"
