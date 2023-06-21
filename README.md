@@ -268,14 +268,51 @@ $ kubectl apply -f infra/kong-k8s/misc/apps/hpa/brewery.yaml -n brewery
 ```
 $ kubectl get horizontalpodautoscaler -n brewery
 
-NAME          REFERENCE            TARGETS    MINPODS   MAXPODS   REPLICAS   AGE
-brewery-hpa   Deployment/brewery   267%/70%   1         20        20         5m40s
+NAME          REFERENCE            TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+brewery-hpa   Deployment/brewery   1%/70%    1         20        1          10m
 ```
 
 20. Instalar o _plugin_ do _Kong_ de _Prometheus_ e de _rate-limiting_ (para não ser barrado por _rate limiting_ quando realizar os testes de carga) no objeto _Ingress_;
 ```
 $ kubectl apply -f infra/kong-k8s/misc/apis/brewery-api.yaml
 ```
+
+21. Verificar se o _ServiceMonitor_ está habilitado na instalação;
+```
+$ kubectl get servicemonitor -n kong
+
+NAME        AGE
+kong-kong   138m
+```
+
+22. Acessar o _Grafana_ via _port-forward_; (Username: admin / Password: prom-operator)
+```
+$ kubectl port-forward svc/prometheus-stack-grafana 3000:80 -n monitoring
+```
+
+23. Importar o _dashboard_ do _Kong_ (código 7424);
+
+![Grafana - Tela inicial](./images/grafana-tela-inicial.png)
+
+Pode-se verificar que não há métricas ainda, porque não foram rodados os testes de carga ainda.
+
+24. Criar o teste de carga;
+```
+$ cd infra/load/infra
+$ ./load.sh
+
+#!/bin/bash
+kubectl testkube create test --file ../create_brewery_load.js --type k6/script --name create-brewery-load
+kubectl testkube run test create-brewery-load -f
+```
+
+25. Verificar o teste de carga rodando;
+```
+$ kubectl get po -n testkube
+$ kubectl logs 6487b85bd5875516d25437ed-dxxgs -f -n testkube
+```
+
+![Teste de carga rodando](./images/teste-carga-rodando.png)
 
 
 Referências:
