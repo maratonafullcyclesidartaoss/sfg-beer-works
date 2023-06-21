@@ -2,7 +2,7 @@ import { check } from "k6";
 import http from "k6/http";
 
 const KONG_CLIENT = "kong";
-const KONG_SECRET = "CcQLzeC4R92jfRK2SdF9vQfQIFSXxnSJ";
+const KONG_SECRET = "a8Jh6Z6dSxxufKlSB55u8yhdySkyWHZ5";
 const USER = "maria";
 const PASS = "maria";
 
