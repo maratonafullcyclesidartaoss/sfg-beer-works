@@ -13,13 +13,13 @@ spec:
     spec:
       containers:
         - name: brewery
-          image: sidartasilva/sfg-beer-works:0508f8077be76d5c7dac9f06c16f346507955c3c
+          image: sidartasilva/sfg-beer-works:d2321abde9424c3b2050d6df8ab0425078a63c10
           resources:
             requests:
-              cpu: "0.05"
+              cpu: "0.1"
               memory: 512Mi
             limits:
-              cpu: "0.05"
+              cpu: "0.5"
               memory: 1Gi
           env:
             - name: LOGGING_LEVEL_GURU_SPRINGFRAMEWORK_SFGRESTBREWERY

@@ -1,23 +1,15 @@
-FROM alpine:latest AS packager
+FROM gradle:7.6.1-jdk17-alpine AS builder
 
-RUN apk --no-cache add openjdk11-jdk openjdk11-jmods
+WORKDIR /usr/app/
 
-ENV JAVA_MINIMAL="/opt/java-minimal"
+COPY . .
 
-# build minimal JRE
-RUN /usr/lib/jvm/java-11-openjdk/bin/jlink \
-    --verbose \
-    --add-modules \
-        java.base,java.sql,java.naming,java.desktop,java.management,java.security.jgss,java.instrument \
-    --compress 2 --strip-debug --no-header-files --no-man-pages \
-    --output "$JAVA_MINIMAL"
+# build runtime
+FROM eclipse-temurin:17.0.5_8-jre-alpine
 
-FROM alpine
+COPY --from=builder /usr/app/target/*.jar /opt/app/application.jar
 
-ENV JAVA_HOME=/opt/java-minimal
-ENV PATH="$PATH:$JAVA_HOME/bin"
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
 
-COPY --from=packager "$JAVA_HOME" "$JAVA_HOME"
-COPY target/*.jar app.jar
-
-ENTRYPOINT ["java","-jar","/app.jar"]
+CMD java -jar /opt/app/application.jar
