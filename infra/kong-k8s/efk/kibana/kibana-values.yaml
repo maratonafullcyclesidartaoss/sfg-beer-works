@@ -1,0 +1,8 @@
+# Allocate smaller chunks of memory per pod.
+resources:
+  requests:
+    cpu: "10m"
+    memory: "1Gi"
+  limits:
+    cpu: "100m"
+    memory: "2Gi"
