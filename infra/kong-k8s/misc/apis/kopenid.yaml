@@ -4,7 +4,7 @@ metadata:
   name: oidc-brewery
 config:
   client_id: "kong"
-  client_secret: "7u8TjX572XjKVW9BMgALr4t3BC1Ut1cC"
+  client_secret: "9aXao3F2bFMOmNqZYdXhzXE50GzjA7fc"
   discovery: "http://keycloak.iam/realms/brewery/.well-known/openid-configuration"
   introspection_endpoint: "http://keycloak.iam/realms/brewery/protocol/openid-connect/token/introspect"
   bearer_only: "yes"
