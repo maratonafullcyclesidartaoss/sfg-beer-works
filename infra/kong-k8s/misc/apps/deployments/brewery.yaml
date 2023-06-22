@@ -16,11 +16,11 @@ spec:
           image: sidartasilva/sfg-beer-works:d2321abde9424c3b2050d6df8ab0425078a63c10
           resources:
             requests:
-              cpu: "0.1"
+              cpu: "0.5"
               memory: 512Mi
             limits:
               cpu: "0.5"
-              memory: 512Mi
+              memory: 1Gi
           env:
           - name: LOGGING_LEVEL_GURU_SPRINGFRAMEWORK_SFGRESTBREWERY
             value: "info"

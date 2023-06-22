@@ -291,10 +291,11 @@ $ kubectl port-forward svc/prometheus-stack-grafana 3000:80 -n monitoring
 ```
 
 23. Importar o _dashboard_ do _Kong_ (código 7424);
+- Abrir os gráficos de _Request Rate_;
 
 ![Grafana - Tela inicial](./images/grafana-tela-inicial.png)
 
-Pode-se verificar que não há métricas ainda, porque não foram rodados os testes de carga ainda.
+Pode-se verificar que não há métricas ainda, porque não foram rodados os testes de carga.
 
 24. Criar o teste de carga;
 ```
@@ -306,7 +307,7 @@ kubectl testkube create test --file ../create_brewery_load.js --type k6/script -
 kubectl testkube run test create-brewery-load -f
 ```
 
-25. Verificar o teste de carga rodando;
+25. Verificar a execução do teste de carga;
 ```
 $ kubectl get po -n testkube
 $ kubectl logs 6487b85bd5875516d25437ed-dxxgs -f -n testkube
