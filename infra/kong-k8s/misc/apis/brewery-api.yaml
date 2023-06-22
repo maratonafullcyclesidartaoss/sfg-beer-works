@@ -5,8 +5,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "kong"
     konghq.com/override: do-not-preserve-host
-#    konghq.com/plugins: oidc-brewery,rl-by-header,prometheus-brewery
-    konghq.com/plugins: oidc-brewery
+    konghq.com/plugins: oidc-brewery,rl-by-header,prometheus-brewery
 spec:
   rules:
     - http:
